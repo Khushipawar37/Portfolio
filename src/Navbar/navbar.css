@@ -1,7 +1,46 @@
+.nav {
+    display: flex;
+}
+
 .navHead {
     font-size: 1.3rem;
-    padding: 1rem;
+    padding: 1.2rem;
     font-family: "Petit Formal Script", serif;
+    font-weight: 550;
+    font-style: normal;
+}
+
+.navIcons {
+    font-family: "Kurale", serif;
     font-weight: 400;
     font-style: normal;
+    padding: 1.2rem;
+    font-size: 1.2rem;
+    gap: 2rem;
+    display: flex;
+    position: absolute;
+    right: 0;
+}
+.navIcons div {
+  position: relative;
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  text-align: center;
+}
+
+.navIcons div::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #bc4749;
+  transition: width 0.3s ease;
+}
+
+.navIcons div:hover::after {
+  width: 100%;
 }
