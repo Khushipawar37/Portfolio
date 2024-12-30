@@ -1,10 +1,13 @@
 import "./landing.css";
 import dp from "/src/assets/dpp.png";
+import { useEffect, useRef } from "react";
+
 
 export default function Landing() {
+
   return (
     <>
-      <div className="intro">
+      <div  className="intro">
         <div className="content">
           <div className="main">KHUSHI PAWAR</div>
           <div className="role-container">
