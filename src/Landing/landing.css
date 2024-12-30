@@ -29,13 +29,40 @@
   display: flex;
 }
 
-.mainImg{
+.mainImg {
   position: relative;
-  top:4.7rem;
-  left:8rem;
-  filter: drop-shadow(2px 2px 2px #bc4749);
+  margin-left: 5.9rem;
+  margin-top: 2.8rem;
+  width: 330px;
+  height: 330px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.mainImg img{
-  height:300px;
-  border-radius: 2rem;
+
+.mainImg::before {
+  content: '';
+  position: absolute;
+  width: 85%;
+  height: 85%;
+  border-radius: 50%;
+  border: 3px solid rgba(0, 0, 0, 0.8);
+}
+
+.mainImg::after {
+  content: '';
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  background-color: #bc4749;
+}
+
+.mainImg img {
+  z-index: 1;
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  object-fit: cover;
+  border-radius: 50%;
 }

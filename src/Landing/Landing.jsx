@@ -1,5 +1,5 @@
 import "./landing.css";
-import dp from "/src/assets/dpp.jpg";
+import dp from "/src/assets/dpp.png";
 
 export default function Landing() {
   return (
