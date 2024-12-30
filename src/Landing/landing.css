@@ -11,9 +11,7 @@
   margin-left:6rem;
 }
 .role{
-    margin-top:1rem;
     font-size:1.5rem;
-    margin-left:12rem;
     font-family: "Kurale", serif;
     color:#bc4749;
 }
@@ -65,4 +63,20 @@
   height: 80%;
   object-fit: cover;
   border-radius: 50%;
+}
+
+.role-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px; 
+  width: 50%; 
+  margin-left: 8rem;
+}
+
+.line {
+  flex-grow: 1;
+  height: 2px; 
+  background-color: #bc4749;
+  
 }

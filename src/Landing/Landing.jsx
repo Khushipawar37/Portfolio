@@ -7,7 +7,11 @@ export default function Landing() {
       <div className="intro">
         <div className="content">
           <div className="main">KHUSHI PAWAR</div>
-          <div className="role">Full Stack Developer</div>
+          <div className="role-container">
+            <div className="line"></div>
+            <div className="role">Full Stack Developer</div>
+            <div className="line"></div>
+          </div>
           <div className="byLine">
             Simplifying complexity through thoughtful <br />
             design and meticulous coding. Building seamless <br />
