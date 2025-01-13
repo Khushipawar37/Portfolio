@@ -1,13 +1,159 @@
-.aboutHead {
-  font-family: "Londrina Shadow", serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size:5rem;
-  margin-top:10rem;
-  margin-left:6rem;
+.about-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(to bottom, #ffffff var(--scroll), #bc4749 calc(var(--scroll) * 100%));
+  transition: background 0.5s ease;
 }
-.aboutImg img{
-  width:300px;
-  height:300px;
-  border-radius: 50%;
+
+.about-content {
+  max-width: 800px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.about-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about-head {
+  font-family: "Londrina Shadow", serif;
+  font-size: 4rem;
+  margin-bottom: 2rem;
+  color: #333;
+  text-align: center;
+}
+
+.about-text {
+  font-family: "Kurale", serif;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  color: #444;
+  text-align: justify;
+}
+
+.skills {
+  margin-bottom: 2rem;
+}
+
+.skills h3 {
+  font-family: "Londrina Shadow", serif;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.skills ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  list-style-type: none;
+  padding: 0;
+}
+
+.skills li {
+  font-family: "Kurale", serif;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #bc4749;
+  color: white;
+  border-radius: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skills li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.download-btn {
+  font-family: "Kurale", serif;
+  font-size: 1rem;
+  padding: 0.8rem 1.5rem;
+  background-color: #bc4749;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: block;
+  margin: 0 auto;
+}
+
+.download-btn:hover {
+  background-color: #a13e40;
+  transform: translateY(-2px);
+}
+
+.about-image {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .about-section {
+      flex-direction: row;
+      justify-content: space-between;
+  }
+
+  .about-content {
+      text-align: left;
+      margin-right: 2rem;
+  }
+
+  .about-image {
+      display: block;
+      width: 300px;
+      height: 300px;
+      position: relative;
+  }
+
+  .about-image::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 3px solid rgba(0, 0, 0, 0.8);
+  }
+
+  .about-image::after {
+      content: '';
+      position: absolute;
+      width: 95%;
+      height: 95%;
+      border-radius: 50%;
+      background-color: #bc4749;
+      top: 2.5%;
+      left: 2.5%;
+  }
+
+  .about-image img {
+      z-index: 1;
+      position: relative;
+      width: 90%;
+      height: 90%;
+      object-fit: cover;
+      border-radius: 50%;
+      margin: 5%;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-head {
+      font-size: 3rem;
+  }
+
+  .about-text {
+      font-size: 1rem;
+  }
+
+  .skills ul {
+      justify-content: flex-start;
+  }
 }
