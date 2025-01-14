@@ -6,13 +6,7 @@ import { motion } from 'framer-motion'
 export default function Landing() {
   return (
     <section className="min-h-screen relative overflow-hidden bg-[#f2e8cf]">
-      {/* Subtle gradient circles */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-br from-[#bc4749] to-transparent rounded-full opacity-10 filter blur-3xl transform -translate-x-1/4 -translate-y-1/4"></div>
-        <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tl from-[#bc4749] to-transparent rounded-full opacity-10 filter blur-3xl transform translate-x-1/4 translate-y-1/4"></div>
-      </div>
-
-      <div className="relative z-10 flex flex-col md:flex-row items-center justify-center min-h-screen p-4 md:p-[5rem]">
+      <div className="relative z-10 flex flex-col md:flex-row items-center justify-center min-h-screen p-2 md:p-[5rem]">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -24,7 +18,7 @@ export default function Landing() {
           </h1>
           <div className="flex items-center justify-center md:justify-start space-x-4">
             <div className="h-px bg-[#bc4749] w-16"></div>
-            <p className="text-xl md:text-2xl text-[#bc4749] font-['Kurale']">Full Stack Developer</p>
+            <p className="text-xl md:text-2xl text-[#bc4749] font-['Kurale']">Crafting Logic, Building Systems</p>
             <div className="h-px bg-[#bc4749] w-16"></div>
           </div>
           <p className="text-lg md:text-xl font-['Kurale'] text-gray-600 max-w-lg">
