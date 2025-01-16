@@ -25,34 +25,34 @@ export default function About() {
     {
       icon: <FaCode className="text-6xl md:text-8xl text-white" />,
       title: "Coding Enthusiast",
-      description: "Transforming ideas into elegant, efficient code is not just my profession—it's my passion.",
+      description: "I enjoy transforming ideas into efficient code that solves real-world problems. With a focus on functionality and innovation, I strive to create impactful software solutions while continuously learning and evolving in the field."
     },
     {
       icon: <FaLaptopCode className="text-6xl md:text-8xl text-white" />,
-      title: "Web Development Guru",
-      description: "Specializing in creating seamless, user-centric web applications that leave a lasting impression.",
+      title: "Full-Stack Web Developer",
+      description: "Passionate about building user-friendly and responsive web applications using the latest technologies. From intuitive designs to seamless functionality, I aim to deliver exceptional user experiences while adhering to best practices."
     },
     {
       icon: <FaBrain className="text-6xl md:text-8xl text-white" />,
-      title: "Algorithm Aficionado",
-      description: "Committed to daily practice of data structures and algorithms to sharpen my problem-solving skills.",
+      title: "Analytical Thinker",
+      description: "Dedicated to mastering data structures and algorithms to solve complex computational problems efficiently. I focus on enhancing problem-solving skills through consistent practice and real-world application of DSA concepts."
     },
     {
       icon: <FaHackerrank className="text-6xl md:text-8xl text-white" />,
-      title: "Hackathon Hero",
-      description: "Active participant in hackathons, turning innovative ideas into reality under pressure.",
+      title: "Hackathon Innovator",
+      description: "Actively participating in hackathons to collaborate with peers and turn creative ideas into reality. I enjoy the challenge of working under pressure to develop innovative solutions and explore new technologies."
     },
     {
       icon: <FaGithub className="text-6xl md:text-8xl text-white" />,
       title: "Open Source Contributor",
-      description: "Passionate about giving back to the community through open source contributions.",
+      description: "Committed to contributing to open-source projects to support the developer community. Through collaboration, I aim to build impactful tools, gain knowledge, and foster meaningful connections in the tech ecosystem."
     }
-  ]
-
+  ];
+  
   return (
     <section 
       ref={containerRef}
-      className="relative bg-gradient-to-b from-[#f2e8cf] to-[#bc4749]"
+      className="relative bg-[#f2e8cf] "
       style={{ height: `${(cards.length + 1) * 120}vh` }}
     >
       <motion.h2
@@ -87,17 +87,17 @@ export default function About() {
               <motion.div
                 key={index}
                 style={{ x, opacity }}
-                className="absolute top-0 left-0 w-full h-full flex items-center justify-center px-16"
+                className="absolute top-0 left-0 w-full h-full flex items-center mt-10 justify-center px-16"
               >
                 <div className="flex flex-col md:flex-row items-center gap-12 max-w-6xl">
-                  <div className="w-32 h-32 md:w-48 md:h-48 flex items-center justify-center">
+                  <div className="w-32 h-32 md:w-48 md:h-48 flex items-center justify-center bg-black rounded-[1rem] border-[3px]">
                     {card.icon}
                   </div>
                   <div className="flex-1 text-center md:text-left">
-                    <h3 className="text-4xl md:text-6xl font-bold mb-6 text-white">
+                    <h3 className="text-4xl md:text-6xl font-bold mb-6 text-[#bc4749]">
                       {card.title}
                     </h3>
-                    <p className="text-xl md:text-2xl text-white/90">
+                    <p className="text-xl md:text-2xl text-black font-['Kurale']">
                       {card.description}
                     </p>
                   </div>
@@ -124,12 +124,12 @@ export default function About() {
         className="sticky top-0 h-screen flex items-center justify-center text-center px-16"
       >
         <div>
-          <p className="text-2xl text-white mb-8 max-w-4xl mx-auto">
+          <p className="text-2xl text-black mt-[9rem] mb-6 max-w-4xl mx-auto font-['Kurale']">
             With a strong foundation in both front-end and back-end technologies, I specialize in building robust, scalable applications that not only meet but exceed client expectations. My approach combines technical expertise with creative problem-solving, ensuring that every project I undertake is both innovative and impactful.
           </p>
           <motion.button
             onClick={handleDownload}
-            className="inline-flex items-center px-8 py-4 text-xl border-2 border-white font-medium rounded-lg text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white transition-colors duration-200"
+            className="inline-flex items-center mt-10 px-8 py-4 text-xl border-2 border-white font-medium rounded-lg text-black bg-[#bc4749] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white transition-colors duration-200"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
