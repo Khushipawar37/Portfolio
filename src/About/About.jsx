@@ -2,7 +2,6 @@
 
 import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-// import { Progress } from "@/components/ui/progress";
 import {
   FaCode,
   FaLaptopCode,
@@ -208,7 +207,6 @@ export default function About() {
                               <div className="text-3xl">{skill.icon}</div>
                               <span>{skill.name}</span>
                             </div>
-                            {/* <Progress value={skill.level} className="h-2" /> */}
                           </div>
                         ))}
                       </div>
@@ -270,7 +268,7 @@ export default function About() {
       <motion.div
         style={{
           opacity: useTransform(scrollYProgress, [0.8, 1], [0, 1]),
-          y: useTransform(scrollYProgress, [0.8, 1], ["100%", "15%"]),
+          y: useTransform(scrollYProgress, [0.9, 1], ["100%", "15%"]),
         }}
         className="sticky top-0 h-screen flex items-center justify-center text-center px-4 md:px-16 z-10"
       >
