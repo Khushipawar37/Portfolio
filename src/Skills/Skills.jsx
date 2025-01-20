@@ -46,7 +46,7 @@ const skillsData = [
   },
   {
     name: "Tailwind CSS",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg",
+    icon: "https://www.drupal.org/files/project-images/screenshot_361.png",
     category: "Frontend",
   },
   {
@@ -86,56 +86,58 @@ const skillsData = [
   },
 ];
 
-const SkillCard = ({ skill }) => {
+const SkillCard = ({ skill, index }) => {
   return (
     <motion.div
-      className="bg-[#f2e8cf] p-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105"
-      whileHover={{ y: -5 }}
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.3 }}
+      className="bg-white p-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center space-x-3 border-l-4 border-[#bc4749]"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, delay: index * 0.1 }}
     >
-      <div className="flex flex-col items-center space-y-2">
-        <img
-          src={skill.icon || "/placeholder.svg"}
-          alt={skill.name}
-          className="w-12 h-12 object-contain"
-        />
-        <h3 className="text-base font-['Kurale'] text-gray-800">
-          {skill.name}
-        </h3>
+      <div className=" p-2 rounded-full">
+        <img src={skill.icon || "/placeholder.svg"} alt={skill.name} className="w-8 h-8 object-contain" />
       </div>
+      <h3 className="text-lg font-semibold text-gray-800">{skill.name}</h3>
     </motion.div>
-  );
-};
+  )
+}
 
 const SkillCategory = ({ category, skills }) => {
   return (
-    <div className="mb-8">
-      <h2 className="text-4xl font-bold font-['Londrina_Shadow'] mb-4 text-[#bc4749] border-b border-[#bc4749] pb-2">
+    <motion.div
+      className="mb-8"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <h2 className="text-3xl font-bold mb-4 text-[#bc4749] border-b-2 border-[#bc4749] pb-2 inline-block">
         {category}
       </h2>
-      <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {skills.map((skill) => (
-          <SkillCard key={skill.name} skill={skill} />
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        {skills.map((skill, index) => (
+          <SkillCard key={skill.name} skill={skill} index={index} />
         ))}
       </div>
-    </div>
-  );
-};
+    </motion.div>
+  )
+}
 
 const Skills = () => {
-  const categories = Array.from(
-    new Set(skillsData.map((skill) => skill.category))
-  );
+  const categories = Array.from(new Set(skillsData.map((skill) => skill.category)))
 
   return (
     <section className="py-16 bg-[#f2e8cf]">
       <div className="container mx-auto px-4">
-        <h1 className="text-7xl md:text-8xl font-['Londrina_Shadow'] mb-10 text-center text-gray-800">
+        <motion.h1
+          className="text-6xl md:text-7xl font-bold mb-12 text-center text-[#bc4749] relative"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           Technologies
-        </h1>
-        <div className="grid gap-8 ">
+          <span className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-[#bc4749]"></span>
+        </motion.h1>
+        <div className="grid gap-8">
           {categories.map((category) => (
             <SkillCategory
               key={category}
@@ -146,7 +148,7 @@ const Skills = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Skills;
+export default Skills
