@@ -27,7 +27,7 @@ const projects = [
   {
     title: "eduForge",
     techStack: ["HTML", "CSS", "Javacript"],
-    description: "A blog platform with advanced content management features.",
+    description: "A blog platform with advanced content features.",
     videoUrl: "/videos/project4.mp4",
   },
 ]
