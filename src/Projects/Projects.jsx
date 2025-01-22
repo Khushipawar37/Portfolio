@@ -3,29 +3,30 @@
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react"
+import insta from './insta.mp4'
 
 const projects = [
   {
-    title: "Project 1",
-    techStack: ["React", "Node.js", "MongoDB"],
+    title: "careerCompass",
+    techStack: ["MERN", "Firebase", "Tailwind", "Botpress"],
     description: "A full-stack web application for managing personal finances.",
     videoUrl: "/videos/project1.mp4",
   },
   {
-    title: "Project 2",
-    techStack: ["Vue.js", "Express", "PostgreSQL"],
+    title: "Clothify",
+    techStack: ["HTML", "CSS", "Javacript"],
     description: "An e-commerce platform with real-time inventory management.",
     videoUrl: "/videos/project2.mp4",
   },
   {
-    title: "Project 3",
-    techStack: ["React Native", "Firebase", "Redux"],
+    title: "Instagram Clone",
+    techStack: ["React", "Firebase", "Tailwind"],
     description: "A cross-platform mobile app for tracking fitness goals.",
-    videoUrl: "/videos/project3.mp4",
+    videoUrl: insta,
   },
   {
-    title: "Project 4",
-    techStack: ["Next.js", "GraphQL", "Prisma"],
+    title: "eduForge",
+    techStack: ["HTML", "CSS", "Javacript"],
     description: "A blog platform with advanced content management features.",
     videoUrl: "/videos/project4.mp4",
   },
