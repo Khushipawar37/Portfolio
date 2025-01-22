@@ -1,8 +1,8 @@
 "use client"
 
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid"
+import { useState, useEffect, useRef } from "react"
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react"
 
 const projects = [
   {
@@ -33,6 +33,17 @@ const projects = [
 
 export default function ProjectsSection() {
   const [currentProject, setCurrentProject] = useState(0)
+  const sectionRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  })
+
+  const backgroundColor = useTransform(scrollYProgress, [0, 0.5, 1], ["#f2e8cf", "#bc4749", "#bc4749"])
+
+  const textColor = useTransform(scrollYProgress, [0, 0.5, 1], ["#f2e8cf", "#f2e8cf", "#f2e8cf"])
+
+  const accentColor = useTransform(scrollYProgress, [0, 0.5, 1], ["#f2e8cf", "#f2e8cf", "#f2e8cf"])
 
   const nextProject = () => {
     setCurrentProject((prev) => (prev + 1) % projects.length)
@@ -43,9 +54,18 @@ export default function ProjectsSection() {
   }
 
   return (
-    <section className="min-h-screen bg-[#f2e8cf] py-16 px-4 md:px-16">
-      <h2 className="text-6xl md:text-7xl font-['Londrina_Shadow'] text-gray-800 text-center mb-[6rem]">My Projects</h2>
-      <div className="max-w-6xl mx-auto">
+    <motion.section
+      ref={sectionRef}
+      className="min-h-screen py-16 px-4 md:px-16 overflow-hidden"
+      style={{ backgroundColor }}
+    >
+      <motion.h2
+        className="text-6xl md:text-7xl font-['Londrina_Shadow'] text-center mb-[6rem]"
+        style={{ color: textColor }}
+      >
+        My Projects
+      </motion.h2>
+      <div className="max-w-7xl mx-auto">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentProject}
@@ -57,15 +77,23 @@ export default function ProjectsSection() {
           >
             {/* Left side: Project info */}
             <div className="md:w-1/2 mb-8 md:mb-0 md:pr-8">
-              <h3 className="text-5xl font-['Kurale'] text-[#bc4749] mb-4">{projects[currentProject].title}</h3>
+              <motion.h3 className="text-6xl font-['Kurale'] mb-4" style={{ color: accentColor }}>
+                {projects[currentProject].title}
+              </motion.h3>
               <div className="flex flex-wrap gap-2 mb-4">
                 {projects[currentProject].techStack.map((tech, index) => (
-                  <span key={index} className="px-3 py-1 bg-[#bc4749] text-white rounded-full text-sm">
+                  <motion.span
+                    key={index}
+                    className="px-3 py-1 rounded-full text-lg"
+                    style={{ backgroundColor: accentColor, color: backgroundColor }}
+                  >
                     {tech}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
-              <p className="text-gray-600 font-['Kurale'] text-lg">{projects[currentProject].description}</p>
+              <motion.p className="font-['Kurale'] text-xl mt-14" style={{ color: textColor }}>
+                {projects[currentProject].description}
+              </motion.p>
             </div>
 
             {/* Right side: Project video */}
@@ -91,29 +119,41 @@ export default function ProjectsSection() {
                   </div>
                 </div>
               </div>
-              <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-[#bc4749] rounded-full opacity-20"></div>
-              <div className="absolute -top-4 -right-4 w-16 h-16 bg-[#bc4749] rounded-full opacity-20"></div>
+              <motion.div
+                className="absolute -bottom-4 -left-4 w-24 h-24 rounded-full opacity-20"
+                style={{ backgroundColor: accentColor }}
+              ></motion.div>
+              <motion.div
+                className="absolute -top-4 -right-4 w-16 h-16 rounded-full opacity-20"
+                style={{ backgroundColor: accentColor }}
+              ></motion.div>
             </div>
           </motion.div>
         </AnimatePresence>
 
         {/* Navigation buttons */}
-        <div className="flex justify-center mt-[5rem] space-x-4">
-          <button
+        <div className="flex justify-center mt-[5rem] space-x-8">
+          <motion.button
             onClick={prevProject}
-            className="p-2 rounded-full bg-[#bc4749] text-white hover:bg-[#a53c3e] transition-colors"
+            className="p-2 rounded-full text-black transition-colors"
+            style={{ backgroundColor: accentColor }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             <ChevronLeftIcon className="w-6 h-6" />
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             onClick={nextProject}
-            className="p-2 rounded-full bg-[#bc4749] text-white hover:bg-[#a53c3e] transition-colors"
+            className="p-2 rounded-full text-black transition-colors"
+            style={{ backgroundColor: accentColor }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             <ChevronRightIcon className="w-6 h-6" />
-          </button>
+          </motion.button>
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }
 
