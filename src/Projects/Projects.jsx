@@ -4,13 +4,14 @@ import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react"
 import insta from './insta.mp4'
+import cc from './cc.mp4'
 
 const projects = [
   {
     title: "careerCompass",
     techStack: ["MERN", "Firebase", "Tailwind", "Botpress"],
     description: "A full-stack web application for managing personal finances.",
-    videoUrl: "/videos/project1.mp4",
+    videoUrl: cc,
   },
   {
     title: "Clothify",
@@ -24,12 +25,12 @@ const projects = [
     description: "A cross-platform mobile app for tracking fitness goals.",
     videoUrl: insta,
   },
-  {
-    title: "eduForge",
-    techStack: ["HTML", "CSS", "Javacript"],
-    description: "A blog platform with advanced content features.",
-    videoUrl: "/videos/project4.mp4",
-  },
+  // {
+  //   title: "eduForge",
+  //   techStack: ["HTML", "CSS", "Javacript"],
+  //   description: "A blog platform with advanced content features.",
+  //   videoUrl: "/videos/project4.mp4",
+  // },
 ]
 
 export default function ProjectsSection() {
