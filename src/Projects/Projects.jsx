@@ -5,24 +5,25 @@ import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react"
 import insta from './insta.mp4'
 import cc from './cc.mp4'
+import clothify from './cloth.mp4'
 
 const projects = [
   {
     title: "careerCompass",
     techStack: ["MERN", "Firebase", "Tailwind", "Botpress"],
-    description: "A full-stack web application for managing personal finances.",
+    description: "CareerCompass is a comprehensive platform offering detailed, structured roadmaps for various careers, including curated resources, required skills, expert blogs, focus-building strategies, and an AI chatbot for personalized career guidance and exploration.",
     videoUrl: cc,
   },
   {
     title: "Clothify",
     techStack: ["HTML", "CSS", "Javacript"],
-    description: "An e-commerce platform with real-time inventory management.",
-    videoUrl: "/videos/project2.mp4",
+    description: "Clothify is an e-commerce platform showcasing a wide range of men's and women's attire, with dynamic data management via MongoDB. It features an auto-updating cart and securely stores order details in the database upon checkout.",
+    videoUrl: clothify,
   },
   {
     title: "Instagram Clone",
     techStack: ["React", "Firebase", "Tailwind"],
-    description: "A cross-platform mobile app for tracking fitness goals.",
+    description: "Instagram Clone is a React-based application replicating Instagram, featuring user profiles dynamically generated with data fetched from Firebase. It includes functionalities for liking posts and adding comments, offering an authentic social media experience.",
     videoUrl: insta,
   },
   // {
@@ -65,7 +66,7 @@ export default function ProjectsSection() {
         className="text-6xl md:text-7xl font-['Londrina_Shadow'] text-center mb-[6rem]"
         style={{ color: textColor }}
       >
-        My Projects
+        Projects
       </motion.h2>
       <div className="max-w-7xl mx-auto">
         <AnimatePresence mode="wait">
