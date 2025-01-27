@@ -30,7 +30,7 @@ const Footer = () => {
             <h3 className="text-2xl font-['Londrina_Shadow'] text-[#f2e8cf]">Get in Touch</h3>
             <div className="flex space-x-4">
               <a
-                href="https://github.com/johndoe"
+                href="https://github.com/KhushiPawar37"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#f2e8cf] hover:text-white transition-colors duration-300"
@@ -39,7 +39,7 @@ const Footer = () => {
                 <span className="sr-only">GitHub</span>
               </a>
               <a
-                href="https://linkedin.com/in/johndoe"
+                href="https://www.linkedin.com/in/khushi-pawar-2823952b0/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#f2e8cf] hover:text-white transition-colors duration-300"
@@ -48,7 +48,7 @@ const Footer = () => {
                 <span className="sr-only">LinkedIn</span>
               </a>
               <a
-                href="mailto:john.doe@example.com"
+                href="mailto:khushipawar987@gmail.com"
                 className="text-[#f2e8cf] hover:text-white transition-colors duration-300"
               >
                 <MdEmail className="w-8 h-8" />
@@ -63,18 +63,9 @@ const Footer = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mt-12 pt-8 border-t border-[#f2e8cf] flex flex-col md:flex-row justify-between items-center"
         >
-          <p className="text-sm text-[#f2e8cf]">&copy; {currentYear} John Doe. All rights reserved.</p>
-          <div className="mt-4 md:mt-0 flex space-x-4">
-            <a href="/privacy" className="text-sm text-[#f2e8cf] hover:text-white transition-colors duration-300">
-              Privacy Policy
-            </a>
-            <a href="/terms" className="text-sm text-[#f2e8cf] hover:text-white transition-colors duration-300">
-              Terms of Service
-            </a>
-          </div>
+          <p className="text-sm text-[#f2e8cf]">&copy; {currentYear} Khushi Pawar. All rights reserved.</p>
         </motion.div>
       </div>
-      <div className="h-1 bg-gradient-to-r from-[#f2e8cf] via-[#bc4749] to-[#f2e8cf]"></div>
     </footer>
   )
 }
