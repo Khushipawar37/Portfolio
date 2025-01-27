@@ -22,7 +22,7 @@ export default function Contact() {
   }
 
   return (
-    <section className="min-h-screen relative overflow-hidden bg-[#f2e8cf] font-['Kurale']">
+    <section className="min-h-screen relative overflow-hidden bg-gradient-to-br from-[#f2e8cf] to-[#f8f3e2] font-['Kurale']">
       <div className="relative z-10 flex flex-col lg:flex-row items-stretch justify-between min-h-screen p-4 md:p-8 lg:p-16">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
