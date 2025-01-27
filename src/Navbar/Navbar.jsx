@@ -9,6 +9,7 @@ export default function Navbar() {
           <div className="navAbout">About</div>
           <div className="navSkills">Skills</div>
           <div className="navProj">Projects</div>
+          <div className="navWork">Work</div>
           <div className="navCon">Contact</div>
         </div>
       </div>
