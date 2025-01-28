@@ -1,8 +1,5 @@
-"use client"
-
 import { motion } from "framer-motion"
 import { useState } from "react"
-import { sendEmail } from "./contact"
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -20,18 +17,30 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus("sending")
+
     try {
-      await sendEmail(formData)
-      setStatus("success")
-      setFormData({ name: "", email: "", phone: "", message: "" })
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        setStatus("success")
+        setFormData({ name: "", email: "", phone: "", message: "" })
+      } else {
+        setStatus("error")
+      }
     } catch (error) {
-      console.error("Failed to send email:", error)
+      console.error("Error submitting form:", error)
       setStatus("error")
     }
   }
 
   return (
-    <section className="min-h-screen relative overflow-hidden bg-gradient-to-br from-[#f2e8cf] to-[#f8f3e2] font-['Kurale']">
+    <section className="min-h-screen relative overflow-hidden bg-[#f2e8cf] font-['Kurale']">
       <div className="relative z-10 flex flex-col lg:flex-row items-stretch justify-between min-h-screen p-4 md:p-8 lg:p-16">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -111,19 +120,43 @@ export default function Contact() {
             </div>
             <button
               type="submit"
+              className="px-8 py-3 bg-[#bc4749] text-white rounded-full hover:bg-[#a53e40] transition-colors duration-300 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1"
               disabled={status === "sending"}
-              className="px-8 py-3 bg-[#bc4749] text-white rounded-full hover:bg-[#a53e40] transition-colors duration-300 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {status === "sending" ? "Sending..." : "Send Message"}
             </button>
-            {status === "success" && <p className="text-green-600 font-semibold">Message sent successfully!</p>}
-            {status === "error" && (
-              <p className="text-red-600 font-semibold">Failed to send message. Please try again.</p>
-            )}
+            {status === "success" && <p className="text-green-600">Message sent successfully!</p>}
+            {status === "error" && <p className="text-red-600">Error sending message. Please try again.</p>}
           </form>
         </motion.div>
-        {/* Rest of the component remains unchanged */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="lg:w-1/2 flex flex-col justify-center items-center lg:items-end space-y-12"
+        >
+          <div className="text-right">
+            <h2 className="text-4xl md:text-5xl font-['Londrina_Shadow'] text-gray-800 mb-4">COLLABORATE</h2>
+            <p className="text-xl text-gray-600 max-w-md">
+              Let's join forces and bring your ideas to life. Whether it's a small project or a grand vision, I'm here
+              to help you turn concepts into reality.
+            </p>
+          </div>
+          <div className="w-full max-w-md aspect-square relative group">
+            <div className="absolute inset-0 bg-[#bc4749] rounded-3xl transform rotate-3 group-hover:rotate-6 transition-transform duration-300"></div>
+            <div className="absolute inset-0 bg-[#f2e8cf] rounded-3xl border-2 border-[#bc4749] flex items-center justify-center p-8">
+              <div className="text-center">
+                <h3 className="text-3xl font-['Londrina_Shadow'] text-[#bc4749] mb-4">INNOVATION AWAITS</h3>
+                <p className="text-lg text-gray-700">
+                  Ready to embark on a journey of creativity and problem-solving? Let's make something extraordinary
+                  together.
+                </p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
+      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#bc4749] via-[#f2e8cf] to-[#bc4749]"></div>
     </section>
   )
 }

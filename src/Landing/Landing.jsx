@@ -1,6 +1,5 @@
 // import "./landing.css";
 import dp from "/src/assets/dpp.png";
-'use client'
 import { motion } from 'framer-motion'
 
 export default function Landing() {
