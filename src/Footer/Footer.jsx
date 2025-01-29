@@ -33,7 +33,7 @@ const Footer = () => {
                 href="https://github.com/KhushiPawar37"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#f2e8cf] hover:text-white transition-colors duration-300"
+                className="text-[#f2e8cf] hover:text-black transition-colors duration-300"
               >
                 <FaGithub className="w-8 h-8" />
                 <span className="sr-only">GitHub</span>
@@ -42,7 +42,7 @@ const Footer = () => {
                 href="https://www.linkedin.com/in/khushi-pawar-2823952b0/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#f2e8cf] hover:text-white transition-colors duration-300"
+                className="text-[#f2e8cf] hover:text-blue-400 transition-colors duration-300"
               >
                 <FaLinkedinIn className="w-8 h-8" />
                 <span className="sr-only">LinkedIn</span>

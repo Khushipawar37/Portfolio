@@ -63,7 +63,7 @@ const Experience = () => {
               isLeft={false}
             />
             <ExperienceItem
-              title="Open Source Contributions"
+              title="Open Source"
               role="Contributor"
               description="Participated in GSoC'24, SSOC'24, and SWOC'24, contributing to various open-source projects and enhancing my collaborative coding skills."
               icon={FaCode}

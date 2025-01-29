@@ -125,8 +125,8 @@ export default function Contact() {
             >
               {status === "sending" ? "Sending..." : "Send Message"}
             </button>
-            {status === "success" && <p className="text-green-600">Message sent successfully!</p>}
-            {status === "error" && <p className="text-red-600">Error sending message. Please try again.</p>}
+            {status === "success" && <p className="text-[#bc4749] text-lg">Thanks for contacting !</p>}
+            {status === "error" && <p className="text-[#bc4749] text=lg">Error sending message. Please try again.</p>}
           </form>
         </motion.div>
         <motion.div
@@ -142,7 +142,7 @@ export default function Contact() {
               to help you turn concepts into reality.
             </p>
           </div>
-          <div className="w-full max-w-md aspect-square relative group">
+          <div className="w-full max-w-sm aspect-square relative group">
             <div className="absolute inset-0 bg-[#bc4749] rounded-3xl transform rotate-3 group-hover:rotate-6 transition-transform duration-300"></div>
             <div className="absolute inset-0 bg-[#f2e8cf] rounded-3xl border-2 border-[#bc4749] flex items-center justify-center p-8">
               <div className="text-center">
