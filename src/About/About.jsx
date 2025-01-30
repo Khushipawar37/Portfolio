@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { ScrollToPlugin } from "gsap/ScrollToPlugin"
 import {
   FaCode,
   FaLaptopCode,
@@ -18,12 +19,11 @@ import {
 } from "react-icons/fa"
 import { SiMongodb, SiExpress, SiFirebase, SiTailwindcss, SiHtml5, SiCss3, SiJavascript } from "react-icons/si"
 
-// Register ScrollTrigger plugin
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
 
 export default function About() {
   const containerRef = useRef(null)
-  const sectionRefs = useRef([])
+  const sectionRefs = useRef([]) // Will hold section refs
 
   const handleDownload = () => {
     const resumeUrl = "../Resume.pdf"
@@ -37,55 +37,72 @@ export default function About() {
 
   useEffect(() => {
     const container = containerRef.current
-    const sections = sectionRefs.current
+    const sections = sectionRefs.current.filter(Boolean) // Ensuring valid refs
 
     if (!container || sections.length === 0) return
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: container,
-        pin: true,
-        scrub: 1,
-        snap: 1 / (sections.length - 1),
-        start: "top top",
-        end: () => "+=" + (container.scrollWidth - window.innerWidth),
-      },
-    })
+    const ctx = gsap.context(() => {
+      ScrollTrigger.getAll().forEach((st) => st.kill()) // Reset all triggers
 
-    tl.to(sections, {
-      xPercent: -100 * (sections.length - 1),
-      ease: "none",
-    })
+      gsap.set(container, { display: "flex", flexDirection: "row" }) // Ensure horizontal layout
+      gsap.set(sections, { width: "100vw" }) // Ensure each section takes full width
 
-    sections.forEach((section, i) => {
-      gsap.from(section.querySelector(".content"), {
-        opacity: 0,
-        y: 50,
-        duration: 0.5,
+      const scrollAmount = container.scrollWidth - window.innerWidth
+
+      const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: section,
-          containerAnimation: tl,
-          start: "left center",
-          toggleActions: "play reverse play reverse",
+          trigger: container,
+          pin: true,
+          scrub: 1,
+          snap: 1 / (sections.length - 1),
+          start: "top top",
+          end: () => `+=${scrollAmount}`, // Proper calculation
+          invalidateOnRefresh: true,
         },
       })
+
+      tl.to(sections, {
+        x: `-${scrollAmount}px`, // Instead of xPercent, use x for accurate movement
+        ease: "none",
+        duration: sections.length - 1,
+      })
+
+      sections.forEach((section, index) => {
+        ScrollTrigger.create({
+          trigger: section,
+          containerAnimation: tl,
+          start: () => `left center-= ${window.innerWidth / 2 * (index === 0 ? 0 : 1)}`,
+          end: () => `+=${window.innerWidth}`,
+          toggleClass: "active",
+        })
+      })
+
+      gsap.to(window, { duration: 1, scrollTo: { y: container, offsetY: 0 } })
     })
 
     return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill())
+      ctx.revert() // Cleanup
     }
   }, [])
-
   const cards = [
     {
       icon: <FaCode className="text-6xl md:text-8xl text-white" />,
       title: "Coding Enthusiast",
       description: "Transforming ideas into efficient, impactful solutions",
       skills: [
-        { name: "Problem Solving", icon: <FaLightbulb className="text-yellow-400" /> },
-        { name: "Algorithm Design", icon: <FaPuzzlePiece className="text-blue-400" /> },
+        {
+          name: "Problem Solving",
+          icon: <FaLightbulb className="text-yellow-400" />,
+        },
+        {
+          name: "Algorithm Design",
+          icon: <FaPuzzlePiece className="text-blue-400" />,
+        },
         { name: "Clean Code", icon: <FaCode className="text-green-400" /> },
-        { name: "Version Control", icon: <FaGithub className="text-gray-400" /> },
+        {
+          name: "Version Control",
+          icon: <FaGithub className="text-gray-400" />,
+        },
       ],
       backgroundImage:
         "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
@@ -103,7 +120,10 @@ export default function About() {
         { name: "Tailwind", icon: <SiTailwindcss className="text-blue-400" /> },
         { name: "HTML5", icon: <SiHtml5 className="text-orange-500" /> },
         { name: "CSS3", icon: <SiCss3 className="text-blue-500" /> },
-        { name: "JavaScript", icon: <SiJavascript className="text-yellow-400" /> },
+        {
+          name: "JavaScript",
+          icon: <SiJavascript className="text-yellow-400" />,
+        },
       ],
       backgroundImage:
         "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -113,10 +133,22 @@ export default function About() {
       title: "Analytical Thinker",
       description: "Solving complex problems with innovative approaches",
       strengths: [
-        { name: "Critical Thinking", icon: <FaBrain className="text-purple-400" /> },
-        { name: "Pattern Recognition", icon: <FaPuzzlePiece className="text-blue-400" /> },
-        { name: "Logical Reasoning", icon: <FaChartLine className="text-green-400" /> },
-        { name: "Attention to Detail", icon: <FaSearch className="text-yellow-400" /> },
+        {
+          name: "Critical Thinking",
+          icon: <FaBrain className="text-purple-400" />,
+        },
+        {
+          name: "Pattern Recognition",
+          icon: <FaPuzzlePiece className="text-blue-400" />,
+        },
+        {
+          name: "Logical Reasoning",
+          icon: <FaChartLine className="text-green-400" />,
+        },
+        {
+          name: "Attention to Detail",
+          icon: <FaSearch className="text-yellow-400" />,
+        },
       ],
       backgroundImage:
         "https://images.unsplash.com/photo-1456406644174-8ddd4cd52a06?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2068&q=80",
@@ -150,10 +182,22 @@ export default function About() {
       title: "Hackathon Enthusiast",
       description: "Actively participating and learning in hackathons",
       activities: [
-        { name: "Participated in 5+ hackathons", icon: <FaUsers className="text-blue-400" /> },
-        { name: "Developed innovative prototypes", icon: <FaLightbulb className="text-yellow-400" /> },
-        { name: "Collaborated with diverse teams", icon: <FaUsers className="text-green-400" /> },
-        { name: "Learned new technologies", icon: <FaLaptopCode className="text-purple-400" /> },
+        {
+          name: "Participated in 5+ hackathons",
+          icon: <FaUsers className="text-blue-400" />,
+        },
+        {
+          name: "Developed innovative prototypes",
+          icon: <FaLightbulb className="text-yellow-400" />,
+        },
+        {
+          name: "Collaborated with diverse teams",
+          icon: <FaUsers className="text-green-400" />,
+        },
+        {
+          name: "Learned new technologies",
+          icon: <FaLaptopCode className="text-purple-400" />,
+        },
       ],
       backgroundImage:
         "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
@@ -168,8 +212,11 @@ export default function About() {
 
       <div
         ref={containerRef}
-        className="flex overflow-x-hidden relative"
-        style={{ width: `${100 * (cards.length + 1)}vw` }}
+        className="flex relative"
+        style={{
+          width: `${100 * (cards.length + 1)}vw`,
+          height: "100vh",
+        }}
       >
         {cards.map((card, index) => (
           <div
