@@ -1,7 +1,5 @@
-"use client"
-
-import { useRef } from "react"
-import { motion, useScroll, useTransform, useSpring, useInView } from "framer-motion"
+import { useEffect, useRef, useState } from "react"
+import React from 'react';
 import {
   FaCode,
   FaLaptopCode,
@@ -108,54 +106,43 @@ const cards = [
   },
 ]
 
-const Card = ({ card, index }) => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-20%" })
+const About = () => {
+  const scrollContainerRef = useRef(null)
+  const [currentCardIndex, setCurrentCardIndex] = useState(0)
 
-  return (
-    <motion.div
-      ref={ref}
-      className="min-h-screen w-full flex items-center justify-center py-16 px-4 bg-[#bc4749]"
-      initial={{ opacity: 0 }}
-      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-      transition={{ duration: 0.8, delay: index * 0.2 }}
-    >
-      <div className="max-w-4xl w-full">
-        <motion.div
-          className="flex flex-col items-center"
-          initial={{ y: 50 }}
-          animate={isInView ? { y: 0 } : { y: 50 }}
-          transition={{ duration: 0.5, delay: index * 0.2 + 0.3 }}
-        >
-          <div className="w-24 h-24 md:w-32 md:h-32 flex items-center justify-center bg-[#f2e8cf] rounded-full border-4 border-[#f2e8cf] mb-6 shadow-lg">
-            {card.icon}
-          </div>
-          <h3 className="text-4xl md:text-5xl font-bold mb-4 text-[#f2e8cf] text-center font-['Londrina_Shadow']">
-            {card.title}
-          </h3>
-          <p className="text-xl md:text-2xl text-[#f2e8cf] mb-8 text-center font-['Kurale']">{card.description}</p>
-          <motion.div
-            className="text-[#f2e8cf] w-full"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.2 + 0.6 }}
-          >
-            {card.content}
-          </motion.div>
-        </motion.div>
-      </div>
-    </motion.div>
-  )
-}
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current
+    let isScrolling = false
 
-export default function About() {
-  const containerRef = useRef(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  })
+    const handleWheel = (e) => {
+      e.preventDefault()
 
-  const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 })
+      if (isScrolling) return
+
+      isScrolling = true
+      const direction = e.deltaY > 0 ? 1 : -1
+      const totalCards = cards.length + 2 
+
+      setCurrentCardIndex((prevIndex) => {
+        const newIndex = Math.max(0, Math.min(prevIndex + direction, totalCards - 1))
+        scrollContainer.scrollTo({
+          left: newIndex * scrollContainer.clientWidth,
+          behavior: "smooth",
+        })
+        return newIndex
+      })
+
+      setTimeout(() => {
+        isScrolling = false
+      }, 1000)
+    }
+
+    scrollContainer.addEventListener("wheel", handleWheel, { passive: false })
+
+    return () => {
+      scrollContainer.removeEventListener("wheel", handleWheel)
+    }
+  }, [])
 
   const handleDownload = () => {
     const resumeUrl = "../Resume.pdf"
@@ -168,55 +155,84 @@ export default function About() {
   }
 
   return (
-    <div ref={containerRef}>
-      <motion.div
-        className="min-h-screen flex items-center justify-center sticky top-0 bg-[#f2e8cf] z-10"
-        style={{
-          opacity: useTransform(smoothProgress, [0, 0.2], [1, 0]),
-          scale: useTransform(smoothProgress, [0, 0.2], [1, 0.8]),
-        }}
-      >
-        <h2 className="text-6xl md:text-7xl lg:text-8xl text-gray-800 font-bold text-center py-10 px-4 font-['Londrina_Shadow']">
-          About Me
-        </h2>
-      </motion.div>
+    <div className="overflow-hidden">
+      <div ref={scrollContainerRef} className="flex overflow-x-hidden">
+        <section className="w-screen h-screen flex-shrink-0 flex items-center justify-center bg-[#f2e8cf]">
+          <h2 className="text-6xl md:text-7xl lg:text-8xl text-gray-800 font-bold text-center py-10 px-4 font-['Londrina_Shadow']">
+            About Me
+          </h2>
+        </section>
 
-      {cards.map((card, index) => (
-        <Card key={index} card={card} index={index} />
-      ))}
+        {cards.map((card, index) => {
+          const isEven = index % 2 === 0
+          const bgColor = isEven ? "bg-[#bc4749]" : "bg-[#f2e8cf]"
+          const textColor = isEven ? "text-[#f2e8cf]" : "text-[#bc4749]"
+          const iconBgColor = isEven ? "bg-[#f2e8cf]" : "bg-[#bc4749]"
+          const iconColor = isEven ? "text-[#bc4749]" : "text-[#f2e8cf]"
 
-      <motion.div
-        className="min-h-screen flex items-center justify-center py-16 px-4 bg-[#bc4749]"
-        style={{
-          opacity: useTransform(smoothProgress, [0.8, 1], [0, 1]),
-        }}
-      >
-        <div className="max-w-3xl w-full p-8 md:p-12 rounded-lg bg-[#f2e8cf] shadow-2xl">
-          <p className="text-xl md:text-2xl text-gray-800 mb-8 leading-relaxed font-['Kurale']">
-            With a strong foundation in both front-end and back-end technologies, I specialize in building robust,
-            scalable applications that not only meet but exceed client expectations. My approach combines technical
-            expertise with creative problem-solving, ensuring that every project I undertake is both innovative and
-            impactful.
-          </p>
-          <div className="flex justify-center space-x-6 mb-8">
-            <FaReact className="text-4xl text-[#bc4749]" />
-            <FaNodeJs className="text-4xl text-[#bc4749]" />
-            <SiMongodb className="text-4xl text-[#bc4749]" />
-            <SiExpress className="text-4xl text-[#bc4749]" />
-            <SiFirebase className="text-4xl text-[#bc4749]" />
+          return (
+            <section
+              key={index}
+              className={`w-screen h-screen flex-shrink-0 flex items-center justify-center ${bgColor} px-4`}
+            >
+              <div className="max-w-5xl w-full">
+                <div className="flex flex-col items-center">
+                  <div
+                    className={`w-24 h-24 md:w-32 md:h-32 flex items-center justify-center ${iconBgColor} rounded-full border-4 ${isEven ? "border-[#f2e8cf]" : "border-[#bc4749]"} mb-6 shadow-lg`}
+                  >
+                    {React.cloneElement(card.icon, { className: `text-6xl md:text-8xl ${iconColor}` })}
+                  </div>
+                  <h3
+                    className={`text-4xl md:text-5xl font-bold mb-4 ${textColor} text-center font-['Londrina_Shadow']`}
+                  >
+                    {card.title}
+                  </h3>
+                  <p className={`text-xl md:text-2xl ${textColor} mb-8 text-center font-['Kurale']`}>
+                    {card.description}
+                  </p>
+                  <div className={`${textColor} w-full`}>
+                    {React.cloneElement(card.content, {
+                      className: card.content.props.className
+                        ? card.content.props.className
+                            .replace("bg-[#f2e8cf]", isEven ? "bg-[#f2e8cf]" : "bg-[#bc4749]")
+                            .replace("text-[#bc4749]", isEven ? "text-[#bc4749]" : "text-[#f2e8cf]")
+                        : "",
+                    })}
+                  </div>
+                </div>
+              </div>
+            </section>
+          )
+        })}
+
+        <section className="w-screen h-screen flex-shrink-0 flex items-center justify-center bg-[#bc4749] px-4">
+          <div className="max-w-3xl w-full p-8 md:p-12 rounded-lg bg-[#f2e8cf] shadow-2xl">
+            <p className="text-xl md:text-2xl text-gray-800 mb-8 leading-relaxed font-['Kurale']">
+              With a strong foundation in both front-end and back-end technologies, I specialize in building robust,
+              scalable applications that not only meet but exceed client expectations. My approach combines technical
+              expertise with creative problem-solving, ensuring that every project I undertake is both innovative and
+              impactful.
+            </p>
+            <div className="flex justify-center space-x-6 mb-8">
+              <FaReact className="text-4xl text-[#bc4749]" />
+              <FaNodeJs className="text-4xl text-[#bc4749]" />
+              <SiMongodb className="text-4xl text-[#bc4749]" />
+              <SiExpress className="text-4xl text-[#bc4749]" />
+              <SiFirebase className="text-4xl text-[#bc4749]" />
+            </div>
+            <button
+              onClick={handleDownload}
+              className="inline-flex items-center px-8 py-4 text-xl font-medium rounded-lg text-[#f2e8cf] bg-[#bc4749] hover:bg-[#a53e40] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#bc4749] transition-all duration-300 shadow-lg"
+            >
+              <FaDownload className="mr-2" />
+              Download Resume
+            </button>
           </div>
-          <motion.button
-            onClick={handleDownload}
-            className="inline-flex items-center px-8 py-4 text-xl font-medium rounded-lg text-[#f2e8cf] bg-[#bc4749] hover:bg-[#a53e40] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#bc4749] transition-all duration-300 shadow-lg"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <FaDownload className="mr-2" />
-            Download Resume
-          </motion.button>
-        </div>
-      </motion.div>
+        </section>
+      </div>
     </div>
   )
 }
+
+export default About
 
