@@ -87,7 +87,7 @@ const skillsData = [
 const SkillCard = ({ skill, index }) => {
   return (
     <motion.div
-      className=" p-3 rounded-lg border-[black] border-[0.1px] transition-all duration-300  flex items-center space-x-3 "
+      className=" p-3 rounded-lg border-[#bc4749] border-l-[2px] transition-all duration-300  flex items-center space-x-3 "
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: index * 0.1 }}

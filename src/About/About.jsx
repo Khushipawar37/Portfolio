@@ -202,8 +202,8 @@ const About = () => {
             aria-label="Discover my expertise"
           >
             <span className="text-xl font-semibold font-['Kurale']">Discover my expertise</span>
-            <div className="relative w-12 h-12 rounded-full bg-[#bc4749] group-hover:bg-[#a53e40] transition-colors duration-300">
-              <FaChevronRight className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-2xl text-[#f2e8cf]" />
+            <div className="relative w-8 h-8 rounded-full bg-[#bc4749] group-hover:bg-[#a53e40] transition-colors duration-300">
+              <FaChevronRight className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-sm text-[#f2e8cf]" />
             </div>
           </button>
         </section>
