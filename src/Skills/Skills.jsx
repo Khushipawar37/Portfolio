@@ -87,7 +87,7 @@ const skillsData = [
 const SkillCard = ({ skill, index }) => {
   return (
     <motion.div
-      className="bg-white p-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center space-x-3 border-l-4 border-[#bc4749]"
+      className=" p-3 rounded-lg border-[black] border-[0.1px] transition-all duration-300  flex items-center space-x-3 "
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -127,7 +127,7 @@ const Skills = () => {
     <section className="py-16 bg-[#f2e8cf]">
       <div className="container mx-auto px-4">
         <motion.h1
-          className="text-6xl md:text-7xl font-bold mb-12 text-center text-[#bc4749] relative"
+          className="text-6xl md:text-7xl font-bold mb-12 text-center text-[#bc4749] relative font-['Londrina_Shadow']"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}

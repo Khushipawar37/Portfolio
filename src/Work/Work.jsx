@@ -29,7 +29,6 @@ const ExperienceItem = ({ title, role, description, icon: Icon, isLeft }) => (
       <div className="relative">
         <div className="h-full w-0.5 bg-[#bc4749] absolute left-1/2 transform -translate-x-1/2"></div>
         <motion.div
-          whileHover={{ scale: 1.2, rotate: 360 }}
           className="w-16 h-16 bg-[#bc4749] rounded-full flex items-center justify-center text-white text-2xl z-10 relative"
         >
           <Icon />
@@ -42,7 +41,7 @@ const ExperienceItem = ({ title, role, description, icon: Icon, isLeft }) => (
 
 const Experience = () => {
   return (
-    <section className="py-24 bg-gradient-to-br from-[#f2e8cf] to-[#f8f3e2] font-['Kurale']">
+    <section className="py-24 bg-[#f2e8cf] font-['Kurale']">
       <div className="container mx-auto px-4">
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
