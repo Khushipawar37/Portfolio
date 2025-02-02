@@ -24,7 +24,7 @@ export default function Home() {
         <Landing />
       </motion.div>
 
-      <About />
+      <About/>
     </>
   )
 }

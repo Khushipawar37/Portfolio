@@ -14,6 +14,7 @@ import {
   FaUsers,
 } from "react-icons/fa"
 import { SiMongodb, SiExpress, SiFirebase } from "react-icons/si"
+import { FaChevronRight } from "react-icons/fa";
 
 const cards = [
   {
@@ -108,7 +109,7 @@ const cards = [
 
 const About = () => {
   const scrollContainerRef = useRef(null)
-  const [currentCardIndex, setCurrentCardIndex] = useState(0)
+  const [currentSection, setCurrentSection] = useState(0)
 
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current
@@ -121,15 +122,34 @@ const About = () => {
 
       isScrolling = true
       const direction = e.deltaY > 0 ? 1 : -1
-      const totalCards = cards.length + 2 
+      const totalSections = cards.length + 2 // +2 for the "About Me" heading and the final paragraph
 
-      setCurrentCardIndex((prevIndex) => {
-        const newIndex = Math.max(0, Math.min(prevIndex + direction, totalCards - 1))
-        scrollContainer.scrollTo({
-          left: newIndex * scrollContainer.clientWidth,
-          behavior: "smooth",
-        })
-        return newIndex
+      setCurrentSection((prevSection) => {
+        let newSection = prevSection + direction
+
+        if (newSection < 0) {
+          // Scroll to the previous section (Landing)
+          window.scrollTo({
+            top: window.scrollY - window.innerHeight,
+            behavior: "smooth",
+          })
+          newSection = 0
+        } else if (newSection >= totalSections) {
+          // Scroll to the next section (Tech Stack)
+          window.scrollTo({
+            top: window.scrollY + window.innerHeight,
+            behavior: "smooth",
+          })
+          newSection = totalSections - 1
+        } else {
+          // Normal horizontal scrolling within the About section
+          scrollContainer.scrollTo({
+            left: newSection * scrollContainer.clientWidth,
+            behavior: "smooth",
+          })
+        }
+
+        return newSection
       })
 
       setTimeout(() => {
@@ -154,13 +174,38 @@ const About = () => {
     document.body.removeChild(link)
   }
 
+  const handleExploreClick = () => {
+    const scrollContainer = scrollContainerRef.current
+    scrollContainer.style.transition = "transform 0.5s ease-out"
+    scrollContainer.style.transform = "translateX(-100%)"
+    setTimeout(() => {
+      scrollContainer.style.transition = ""
+      scrollContainer.style.transform = ""
+      scrollContainer.scrollTo({
+        left: scrollContainer.clientWidth,
+        behavior: "smooth",
+      })
+    }, 500)
+    setCurrentSection(1)
+  }
+
   return (
     <div className="overflow-hidden">
       <div ref={scrollContainerRef} className="flex overflow-x-hidden">
-        <section className="w-screen h-screen flex-shrink-0 flex items-center justify-center bg-[#f2e8cf]">
+        <section className="w-screen h-screen flex-shrink-0 flex flex-col items-center justify-center bg-[#f2e8cf]">
           <h2 className="text-6xl md:text-7xl lg:text-8xl text-gray-800 font-bold text-center py-10 px-4 font-['Londrina_Shadow']">
             About Me
           </h2>
+          <button
+            onClick={handleExploreClick}
+            className="mt-8 group flex items-center space-x-2 text-gray-600 hover:text-[#bc4749] transition-colors duration-300 focus:outline-none"
+            aria-label="Discover my expertise"
+          >
+            <span className="text-xl font-semibold font-['Kurale']">Discover my expertise</span>
+            <div className="relative w-12 h-12 rounded-full bg-[#bc4749] group-hover:bg-[#a53e40] transition-colors duration-300">
+              <FaChevronRight className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-2xl text-[#f2e8cf]" />
+            </div>
+          </button>
         </section>
 
         {cards.map((card, index) => {
@@ -235,4 +280,3 @@ const About = () => {
 }
 
 export default About
-
