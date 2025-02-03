@@ -1,36 +1,45 @@
 .nav {
-    display: flex;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  color:#f2e8cf;
+  background-color: #1E2019;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 }
 
 .navHead {
-    font-size: 1.3rem;
-    padding: 1.2rem;
-    font-family: "Petit Formal Script", serif;
-    font-weight: 540;
-    font-style: normal;
+  font-size: 1.3rem;
+  font-family: "Petit Formal Script", serif;
+  font-weight: 540;
+  font-style: normal;
 }
 
 .navIcons {
-    font-family: "Kurale", serif;
-    font-weight: 400;
-    font-style: normal;
-    padding: 1.2rem;
-    font-size: 1.2rem;
-    gap: 2rem;
-    display: flex;
-    position: absolute;
-    right: 0;
+  font-family: "Kurale", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.2rem;
+  display: flex;
+  gap: 2rem;
 }
-.navIcons div {
+
+.navItem {
   position: relative;
   font-size: 18px;
   font-weight: 500;
-  color: #333;
+  color: #f2e8cf;
   cursor: pointer;
   text-align: center;
+  text-decoration: none;
 }
 
-.navIcons div::after {
+.navItem::after {
   content: "";
   position: absolute;
   bottom: -5px;
@@ -41,6 +50,27 @@
   transition: width 0.3s ease;
 }
 
-.navIcons div:hover::after {
+.navItem:hover::after {
   width: 100%;
 }
+
+/* Add some padding to the body to account for the fixed navbar */
+body {
+  padding-top: 60px; /* Adjust this value based on your navbar height */
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .navIcons {
+    margin-top: 1rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+

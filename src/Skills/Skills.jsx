@@ -88,7 +88,7 @@ const skillsData = [
 const SkillCard = ({ skill, index }) => {
   return (
     <motion.div
-      className=" p-3 rounded-lg border-[#bc4749] border-l-[2px] transition-all duration-300  flex items-center space-x-3 "
+      className=" p-3 rounded-lg shadow-lg border-[#bc4749] border-l-[2px] transition-all duration-300  flex items-center space-x-3 "
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -128,13 +128,13 @@ const Skills = () => {
     <section className="py-16 bg-[#f2e8cf]">
       <div className="container mx-auto px-4">
         <motion.h1
-          className="text-6xl md:text-7xl font-bold mb-12 text-center text-[#bc4749] relative font-['Londrina_Shadow']"
+          className="text-6xl md:text-7xl  mb-12 text-center text-black relative font-['Londrina_Shadow']"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           Technologies
-          <span className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-[#bc4749]"></span>
+          <span className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-black"></span>
         </motion.h1>
         <div className="grid gap-8">
           {categories.map((category) => (

@@ -41,7 +41,7 @@ export default function ProjectsSection() {
     offset: ["start end", "end start"],
   })
 
-  const backgroundColor = useTransform(scrollYProgress, [0, 0.5, 1], ["#f2e8cf", "#bc4749", "#bc4749"])
+  const backgroundColor = useTransform(scrollYProgress, [0, 0.2, 1], ["#f2e8cf", "#bc4749", "#bc4749"])
 
   const textColor = useTransform(scrollYProgress, [0, 0.5, 1], ["#f2e8cf", "#f2e8cf", "#f2e8cf"])
 
