@@ -142,7 +142,7 @@ export default function Contact() {
               to help you turn concepts into reality.
             </p>
           </div>
-          <div className="w-full max-w-sm aspect-square relative group">
+          <div className="hidden md:block w-full max-w-sm aspect-square relative group">
             <div className="absolute inset-0 bg-[#bc4749] rounded-3xl transform rotate-3 group-hover:rotate-6 transition-transform duration-300"></div>
             <div className="absolute inset-0 bg-[#f2e8cf] rounded-3xl border-2 border-[#bc4749] flex items-center justify-center p-8">
               <div className="text-center">

@@ -25,12 +25,6 @@ const projects = [
     description: "Instagram Clone is a React-based application replicating Instagram, featuring user profiles dynamically generated with data fetched from Firebase. It includes functionalities for liking posts and adding comments, offering an authentic social media experience.",
     videoUrl: insta,
   },
-  // {
-  //   title: "eduForge",
-  //   techStack: ["HTML", "CSS", "Javacript"],
-  //   description: "A blog platform with advanced content features.",
-  //   videoUrl: "/videos/project4.mp4",
-  // },
 ]
 
 export default function ProjectsSection() {
@@ -58,7 +52,7 @@ export default function ProjectsSection() {
   return (
     <motion.section
       ref={sectionRef}
-      className="min-h-screen py-16 px-4 md:px-16 overflow-hidden"
+      className="min-h-screen flex flex-col items-center justify-center py-16 px-4 md:px-16 overflow-hidden"
       style={{ backgroundColor }}
     >
       <motion.h2
@@ -100,8 +94,8 @@ export default function ProjectsSection() {
 
             {/* Right side: Project video */}
             <div className="md:w-1/2 relative">
-              <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-2xl">
-                <video
+            <div className="w-full max-w-4xl aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-2xl">
+            <video
                   src={projects[currentProject].videoUrl}
                   autoPlay
                   loop
