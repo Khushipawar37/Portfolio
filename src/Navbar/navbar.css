@@ -54,23 +54,26 @@
   width: 100%;
 }
 
-/* Add some padding to the body to account for the fixed navbar */
 body {
-  padding-top: 60px; /* Adjust this value based on your navbar height */
+  padding-top: 60px; 
 }
 
-/* Media query for responsiveness */
 @media (max-width: 768px) {
   .nav {
     flex-direction: column;
     padding: 1rem;
   }
-
+  .navHead{
+    display: none;
+  }
   .navIcons {
     margin-top: 1rem;
     gap: 1rem;
     flex-wrap: wrap;
     justify-content: center;
+  }
+  .navItem{
+    font-size:15px;
   }
 }
 
