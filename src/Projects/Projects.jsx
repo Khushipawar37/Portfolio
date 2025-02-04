@@ -5,6 +5,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react"
 import insta from './insta.mp4'
 import cc from './cc.mp4'
 import clothify from './cloth.mp4'
+import ac from './ac.mp4'
 
 const projects = [
   {
@@ -12,6 +13,12 @@ const projects = [
     techStack: ["MERN", "Firebase", "Tailwind", "Botpress"],
     description: "CareerCompass is a comprehensive platform offering detailed, structured roadmaps for various careers, including curated resources, required skills, expert blogs, focus-building strategies, and an AI chatbot for personalized career guidance and exploration.",
     videoUrl: cc,
+  },
+  {
+    title: "Amazon Clone",
+    techStack: ["HTML", "CSS", "Javacript"],
+    description: "Built a basic Amazon clone to test my ability to replicate a given design with precision. The project helped me refine my frontend skills and improve attention to UI/UX details.",
+    videoUrl: ac,
   },
   {
     title: "Clothify",
@@ -94,7 +101,7 @@ export default function ProjectsSection() {
 
             {/* Right side: Project video */}
             <div className="md:w-1/2 relative">
-            <div className="w-full max-w-4xl aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-2xl">
+            <div className="w-full  h-[180px] md:h-[280px] lg:h-[280px] object-cover rounded-lg overflow-hidden shadow-2xl">
             <video
                   src={projects[currentProject].videoUrl}
                   autoPlay
