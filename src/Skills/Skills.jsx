@@ -84,7 +84,6 @@ const skillsData = [
   },
 ];
 
-
 const SkillCard = ({ skill, index }) => {
   return (
     <motion.div
