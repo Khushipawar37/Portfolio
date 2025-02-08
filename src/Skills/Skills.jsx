@@ -99,7 +99,6 @@ const SkillCard = ({ skill, index }) => {
     </motion.div>
   )
 }
-
 const SkillCategory = ({ category, skills }) => {
   return (
     <motion.div
