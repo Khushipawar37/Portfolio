@@ -19,25 +19,25 @@ export default function Contact() {
     setStatus("sending")
 
     try {
-      const response = await fetch("http://localhost:5000/api/contact", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
-      })
-
+      });
+    
       if (response.ok) {
-        setStatus("success")
-        setFormData({ name: "", email: "", phone: "", message: "" })
+        setStatus("success");
+        setFormData({ name: "", email: "", phone: "", message: "" });
       } else {
-        setStatus("error")
+        setStatus("error");
       }
     } catch (error) {
-      console.error("Error submitting form:", error)
-      setStatus("error")
+      console.error("Error submitting form:", error);
+      setStatus("error");
     }
-  }
+  }    
 
   return (
     <section className="min-h-screen relative overflow-hidden bg-[#f2e8cf] font-['Kurale']">
