@@ -44,4 +44,6 @@ app.post("/api/contact", async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`)
 })
+console.log("EMAIL_USER:", process.env.EMAIL_USER);
+console.log("EMAIL_PASS:", process.env.EMAIL_PASS ? "Exists" : "Not Found");
 
