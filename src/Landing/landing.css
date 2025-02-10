@@ -84,3 +84,11 @@
   background-color: #bc4749;
   
 }
+
+.developer-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  letter-spacing: 0.1em;
+  line-height: 1;
+}
