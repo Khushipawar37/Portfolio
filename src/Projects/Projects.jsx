@@ -15,13 +15,13 @@ const projects = [
   },
   {
     title: "Amazon Clone",
-    techStack: ["HTML", "CSS", "Javacript"],
+    techStack: ["HTML", "CSS", "Javascript"],
     description: "Built a basic Amazon clone to test my ability to replicate a given design with precision. The project helped me refine my frontend skills and improve attention to UI/UX details.",
     videoUrl: ac,
   },
   {
     title: "Clothify",
-    techStack: ["HTML", "CSS", "Javacript"],
+    techStack: ["HTML", "CSS", "Javascript"],
     description: "Clothify is an e-commerce platform showcasing a wide range of men's and women's attire, with dynamic data management via MongoDB. It features an auto-updating cart and securely stores order details in the database upon checkout.",
     videoUrl: clothify,
   },
