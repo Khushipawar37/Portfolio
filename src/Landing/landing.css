@@ -92,3 +92,8 @@
   letter-spacing: 0.1em;
   line-height: 1;
 }
+@media (max-width: 1500px) {
+  .developer-text{
+    display:none;
+  }
+}
