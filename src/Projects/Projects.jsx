@@ -6,6 +6,7 @@ import insta from './insta.mp4'
 import cc from './cc.mp4'
 import clothify from './cloth.mp4'
 import ac from './ac.mp4'
+
 const projects = [
   {
     title: "careerCompass",
