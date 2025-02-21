@@ -314,7 +314,6 @@ const About = () => {
             </section>
           )
         })}
-
         <section className="w-screen h-screen flex-shrink-0 flex items-center justify-center bg-[#bc4749] px-4 snap-start">
           <div className="max-w-6xl w-full p-8 md:p-12 rounded-lg bg-[#f2e8cf] shadow-2xl">
             <p className="text-xl md:text-2xl text-gray-800 mb-8 leading-relaxed font-['Kurale']">
