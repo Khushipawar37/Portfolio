@@ -8,6 +8,7 @@ export default function Contact() {
     phone: "",
     message: "",
   })
+  
   const [status, setStatus] = useState(null)
 
   const handleChange = (e) => {
