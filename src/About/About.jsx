@@ -18,7 +18,6 @@ import {
   FaCoffee,
   FaGraduationCap,
 } from "react-icons/fa"
-import { SiMongodb, SiExpress, SiFirebase } from "react-icons/si"
 
 const cards = [
   {
