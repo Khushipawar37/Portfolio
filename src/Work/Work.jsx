@@ -38,7 +38,6 @@ const ExperienceItem = ({ title, role, description, icon: Icon, isLeft }) => (
     <div className="w-1/2"></div>
   </motion.div>
 );
-
 const Experience = () => {
   return (
     <section className="py-24 bg-[#f2e8cf] font-['Kurale']">
