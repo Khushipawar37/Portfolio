@@ -20,7 +20,7 @@ function App() {
     })
 
     return () => {
-      ctx.revert() // This will clean up all GSAP animations when the component unmounts
+      ctx.revert() 
     }
   }, [])
 
