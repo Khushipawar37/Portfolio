@@ -14,16 +14,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 gsap.registerPlugin(ScrollTrigger)
 
 function App() {
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Your GSAP animations can go here if needed
-    })
-
-    return () => {
-      ctx.revert() 
-    }
-  }, [])
-
+ 
   return (
     <Router>
       <div className="relative w-full overflow-x-hidden">
