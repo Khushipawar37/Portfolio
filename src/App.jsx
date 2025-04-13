@@ -13,7 +13,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 gsap.registerPlugin(ScrollTrigger)
 function App() {
- 
   return (
     <Router>
       <div className="relative w-full overflow-x-hidden">
