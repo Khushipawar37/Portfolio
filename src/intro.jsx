@@ -6,7 +6,6 @@ import About from "./About/About"
 export default function Home() {
   const containerRef = useRef(null)
 
-  // Framer Motion scroll handling for background
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
